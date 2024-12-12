@@ -13,43 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.forms.model.Form;
-import com.example.forms.repositories.FormRepository;
+import com.example.forms.service.FormService;
 
 @RestController
 @RequestMapping("/api/forms")
 public class FormController {
 
-    private final FormRepository formRepository;
 
-    public FormController(FormRepository formRepository) {
-        this.formRepository = formRepository;
+    private final FormService formService;
+
+    public FormController(FormService formService) {
+        this.formService = formService;
     }
 
     @GetMapping("")
     List<Form> findAll(){
-        return formRepository.findAllForms();
+        return formService.findAllForms();
     }
 
     @GetMapping("/{id}")
-    Optional<Form> getById(@PathVariable Integer id ) {
-        return formRepository.findById(id);
+    Optional<Form> findById(@PathVariable Integer id ) {
+        return formService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@RequestBody Form form){
-        formRepository.create(form);
+        formService.createForm(form);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@RequestBody Form form, @PathVariable Integer id){
-        formRepository.update(form, id);
+        formService.updateForm(form, id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void deleteById(@PathVariable Integer id){
-        formRepository.delete(id);
+        formService.deleteForm(id);
     }
 }

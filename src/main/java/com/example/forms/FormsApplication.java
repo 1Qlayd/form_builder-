@@ -19,6 +19,7 @@ public class FormsApplication {
 	@Bean
 	CommandLineRunner Form(FormRepository formRepository){
 		return args ->{
+			 // потом содавать через этот пример use
 			Form form = new Form(1,"Book", 1, "Description book","Content book",LocalDateTime.now());
 			formRepository.create(form);
 		};
