@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 public class User {
-    private Long id;
+    private Integer id;
     private String username;
     private String hash_password;
     private String email;
-    private Long idRole;
+    private Integer idRole;
 
-    public User(Long id, String username, String hash_password, String email, Long idRole) {
+    public User(Integer id, String username, String hash_password, String email, Integer idRole) {
         this.id = id;
         this.username = username;
         this.hash_password = hash_password;

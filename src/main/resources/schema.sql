@@ -7,3 +7,10 @@ CREATE TABLE Form(
     date timestamp NOT NULL,
     PRIMARY KEY(id)
 );
+CREATE TABLE Users(
+    id INT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    hash_password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    idRole INT NOT NULL
+);

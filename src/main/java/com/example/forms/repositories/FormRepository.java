@@ -3,8 +3,6 @@ package com.example.forms.repositories;
 
 import java.util.List;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
@@ -13,7 +11,6 @@ import com.example.forms.model.Form;
 @Repository
 public class FormRepository {
 
-    private static final Logger log = LoggerFactory.getLogger(FormRepository.class);
     private JdbcClient jdbcClient;
 
     public FormRepository(JdbcClient jdbcClient){
