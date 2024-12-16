@@ -10,9 +10,9 @@ public class Form {
     private Integer userID;
     private String description;
     private String content;
-    private LocalDateTime date;
+    private String date;
 
-    public Form(Integer id, String name, Integer userID, String description, String content, LocalDateTime date) {
+    public Form(Integer id, String name, Integer userID, String description, String content, String date) {
         this.id = id;
         this.name = name;
         this.userID = userID;   
