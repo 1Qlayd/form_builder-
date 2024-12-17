@@ -3,6 +3,7 @@ package com.example.forms.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,30 +26,38 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "Welcome user";
+    }
+
+    @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     List<User> findAll(){
         return userService.findAllUsers();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     Optional<User> findById(@PathVariable Integer id ) {
         return userService.findById(id);
     }
-      
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+
+    @PostMapping("/create")
     void create(@RequestBody User user){
         userService.createUser(user);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') || hasAuthority('ROLE_USER')")
     void update(@RequestBody User user, @PathVariable Integer id){
         userService.updateUser(user, id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') || hasAuthority('ROLE_USER')")
     void deleteById(@PathVariable Integer id){
         userService.deleteUser(id);
     }
